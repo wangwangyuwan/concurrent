@@ -1,4 +1,4 @@
-package com.yuwan.concurrent.sync.aqs;
+package com.yuwan.concurrent.sync.lock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -11,16 +11,26 @@ public class ReadWriteLock {
     public static void main(String[] args) {
 
     }
+    //锁升级
     private  class Worker extends Thread{
         public void run(){
             read.lock();
+
             read.unlock();
             write.lock();
-            System.out.println("write....");
-            read.lock();
-            write.unlock();
-            System.out.println("read");
-            read.unlock();
+            try {
+                System.out.println("write....");
+                read.lock();
+            }finally {
+
+                write.unlock();
+            }
+            try {
+                System.out.println("read");
+            }finally {
+
+                read.unlock();
+            }
         }
     }
 }

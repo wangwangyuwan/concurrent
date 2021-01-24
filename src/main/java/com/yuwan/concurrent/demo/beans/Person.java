@@ -1,10 +1,17 @@
 package com.yuwan.concurrent.demo.beans;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * @className:
- * @description:
- * @author:
- * @date:
+ * @author chen
+ * @description pojo
+ * @date 2020/07/14
  */
+@Getter
+@Setter
 public class Person {
+    String name;
+    Integer age;
+
 }
